@@ -30,4 +30,26 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+button {
+  margin-top: 20px;
+  margin-right: 20px;
+  margin-left: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: rgb(53, 238, 142);
+  border-radius: 5px;
+  color: white;
+  border: 1px;
+}
+span {
+  float: left;
+  padding: 2px 5px 2px 5px;
+  font-size: 14px;
+  border: 1px solid #00ffff;
+  background-color: #2c7cff;
+  border-radius: 4px;
+  color: white;
+}
 </style>
