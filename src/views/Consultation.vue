@@ -1,6 +1,12 @@
 <template>
   <div class="consultation">
     <FreeForm />
+     <router-link to="about">
+      <button>前に戻る ></button>
+    </router-link>
+    <router-link to="/summary">
+      <button>次へ進む ></button>
+    </router-link>
   </div>
 </template>
 
