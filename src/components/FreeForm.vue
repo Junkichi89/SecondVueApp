@@ -9,7 +9,7 @@
       </div>
       <div class="contents">
         <p>-ご相談内容-</p>
-        <textarea name id cols="30" rows="10" v-model="usersconcern" @change="setConcern"></textarea>
+        <textarea cols="30" rows="10" v-model="user.userconcern" @change="setConcern"></textarea>
       </div>
     </div>
   </div>
@@ -20,12 +20,14 @@ export default {
   name: "FreeForm",
   data() {
     return {
-      usersconcern: ""
+      user: {
+        userconcern: ""
+      }
     };
   },
   methods: {
     setConcern: function() {
-      return this.$store.commit("setConcern", this.usersconcern);
+      return this.$store.commit("setConcern", this.user);
     }
   }
 };

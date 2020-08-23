@@ -10,37 +10,35 @@
           -性別-
         </p>
         <div>
-          {{ users.gender }}
+          {{ user.gender }}
         </div>
         <p>
           -生年月日-
         </p>
-        <div>
-          {{ users.year }}年{{ users.month }}月{{ users.day }}日
-        </div>
+        <div>{{ user.year }}年{{ user.month }}月{{ user.day }}日</div>
         <p>
           -現在、生命保険に加入されていますか？-
         </p>
         <div>
-          {{ usersinfo.answer1 }}
+          {{ user.answer1 }}
         </div>
         <p>
           -現在、入院中ですか。または、最近３ヶ月以内に医師の診察・検査の結果、入院・手術をすすめられたことはありますか？-
         </p>
         <div>
-          {{ usersinfo.answer2 }}
+          {{ user.answer2 }}
         </div>
         <p>
           -過去5年以内に、病気やけがで、手術を受けたことまたは継続して7日以上の入院をしたことがありますか？-
         </p>
         <div>
-          {{ usersinfo.answer3 }}
+          {{ user.answer3 }}
         </div>
         <p>
           -相談内容-
         </p>
         <div>
-          {{ usersconcern }}
+          {{ user.userconcern }}
         </div>
       </div>
     </div>
@@ -51,14 +49,8 @@
 export default {
   name: "Confirmation",
   computed: {
-    users: function() {
-      return this.$store.state.users
-    },
-    usersinfo: function() {
-      return this.$store.state.usersinfo
-    },
-    usersconcern: function() {
-      return this.$store.state.usersconcern
+    user: function() {
+      return this.$store.state.user;
     }
   }
 };

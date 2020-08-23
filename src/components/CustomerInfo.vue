@@ -10,40 +10,32 @@
         <p>-性別-</p>
         <p class="gender">
           <label>
-            <input
-              type="radio"
-              name="gender"
-              value="男性"
-              v-model="users.gender"
-              @change="setUser"
-            />男性
+            <input type="radio" name="gender" value="男性" v-model="user.gender" @change="setUser" />男性
           </label>
           <label>
-            <input
-              type="radio"
-              name="gender"
-              value="女性"
-              @change="setUser"
-              v-model="users.gender"
-            />女性
+            <input type="radio" name="gender" value="女性" @change="setUser" v-model="user.gender" />女性
           </label>
           <br />
         </p>
         <p class="birthdate">-生年月日-</p>
         <form @change="setUser">
           <!-- 生年月日のselectBox -->
-          <select class="year" v-model="users.year" @change="getDays">
+          <select class="year" v-model="user.year" @change="getDays">
             <option v-for="number in 34" v-bind:value="number + 1966" v-bind:key="number + 1966">
               {{ number + 1966 }}年
-              <span v-if="number < 23">（{{ users.seirekiS }}{{ number + 41 }})</span>
-              <span v-else>（{{ users.seirekiH }}{{ number - 22 }})</span>
+              <span v-if="number < 23">（{{ user.seirekiS }}{{ number + 41 }})</span>
+              <span v-else>（{{ user.seirekiH }}{{ number - 22 }})</span>
             </option>
           </select>年
-          <select class="month" v-model="users.month" @change="getDays">
+          <select class="month" v-model="user.month" @change="getDays">
             <option v-for="number in 12" v-bind:value="number" v-bind:key="number">{{ number }}</option>
           </select>月
-          <select class="day" v-model="users.day">
-            <option v-for="number in this.users.daysMax" v-bind:value="number" v-bind:key="number">{{ number }}</option>
+          <select class="day" v-model="user.day">
+            <option
+              v-for="number in this.user.daysMax"
+              v-bind:value="number"
+              v-bind:key="number"
+            >{{ number }}</option>
           </select>日
         </form>
       </div>
@@ -57,7 +49,7 @@ export default {
   name: "CustomerInfo",
   data() {
     return {
-      users: {
+      user: {
         gender: "",
         year: 1990,
         month: 1,
@@ -74,10 +66,14 @@ export default {
   methods: {
     //日の最大数を取得
     getDays: function() {
-      this.users.daysMax = new Date(this.users.year, this.users.month, 0).getDate();
+      this.user.daysMax = new Date(
+        this.user.year,
+        this.user.month,
+        0
+      ).getDate();
     },
     setUser: function() {
-      return this.$store.commit("setUser", this.users);
+      return this.$store.commit("setUser", this.user);
     }
   }
 };
