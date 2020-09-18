@@ -10,48 +10,82 @@
         <form v-on:change="select">
           <p>
             <label>
-              <input type="radio" name="answer1" v-bind:value="はい" />はい
+              <input
+                type="radio"
+                name="answer1"
+                @change="setInfo"
+                v-model="user.answer1"
+                value="はい"
+              />はい
             </label>
             <label>
-              <input type="radio" name="answer1" v-bind:value="いいえ" />いいえ
+              <input
+                type="radio"
+                name="answer1"
+                @change="setInfo"
+                v-model="user.answer1"
+                value="いいえ"
+              />いいえ
             </label>
             <br />
           </p>
         </form>
         <div v-if="picked">
-          <p>現在、入院中ですか。または、最近３ヶ月以内に医師の診察・検査の結果、入院・手術をすすめられたことはありますか？</p>
+          <p>
+            現在、入院中ですか。または、最近３ヶ月以内に医師の診察・検査の結果、入院・手術をすすめられたことはありますか？
+          </p>
           <form v-on:change="click">
             <p>
               <label>
-                <input type="radio" name="answer2" v-bind:value="はい" />はい
+                <input
+                  type="radio"
+                  name="answer2"
+                  @change="setInfo"
+                  v-model="user.answer2"
+                  value="はい"
+                />はい
               </label>
               <label>
-                <input type="radio" name="answer2" v-bind:value="いいえ" />いいえ
+                <input
+                  type="radio"
+                  name="answer2"
+                  @change="setInfo"
+                  v-model="user.answer2"
+                  value="いいえ"
+                />いいえ
               </label>
               <br />
             </p>
           </form>
         </div>
         <form v-if="checked">
-          <p>過去5年以内に、病気やけがで、手術を受けたことまたは継続して7日以上の入院をしたことがありますか？</p>
+          <p>
+            過去5年以内に、病気やけがで、手術を受けたことまたは継続して7日以上の入院をしたことがありますか？
+          </p>
           <p>
             <label>
-              <input type="radio" name="answer3" v-bind:value="はい" />はい
+              <input
+                type="radio"
+                name="answer3"
+                @change="setInfo"
+                v-model="user.answer3"
+                value="はい"
+              />はい
             </label>
             <label>
-              <input type="radio" name="answer3" v-bind:value="いいえ" />いいえ
+              <input
+                type="radio"
+                name="answer3"
+                @change="setInfo"
+                v-model="user.answer3"
+                value="いいえ"
+              />いいえ
             </label>
             <br />
           </p>
         </form>
       </div>
     </div>
-    <router-link to="/">
-      <button>前へ戻る ></button>
-    </router-link>
-    <router-link to="/consultation">
-      <button>次へ進む ></button>
-    </router-link>
   </div>
 </template>
 
@@ -63,9 +97,11 @@ export default {
   },
   data() {
     return {
-      answer1: "",
-      answer2: "",
-      answer3: "",
+      user: {
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      },
       picked: false,
       checked: false
     };
@@ -79,6 +115,9 @@ export default {
     },
     click: function() {
       this.checked = true;
+    },
+    setInfo: function() {
+      return this.$store.commit("setInfo", this.user);
     }
   }
 };

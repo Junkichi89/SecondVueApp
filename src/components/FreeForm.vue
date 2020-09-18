@@ -9,28 +9,26 @@
       </div>
       <div class="contents">
         <p>-ご相談内容-</p>
-        <textarea name id cols="30" rows="10" v-bind:value="text"></textarea>
+        <textarea cols="30" rows="10" v-model="user.userconcern" @change="setConcern"></textarea>
       </div>
     </div>
-    <router-link to="about">
-      <button>前に戻る ></button>
-    </router-link>
-    <router-link to="/consultation">
-      <button>次へ進む ></button>
-    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: "FreeForm",
-  props: {
-    msg: String
-  },
   data() {
     return {
-      text: ""
+      user: {
+        userconcern: ""
+      }
     };
+  },
+  methods: {
+    setConcern: function() {
+      return this.$store.commit("setConcern", this.user);
+    }
   }
 };
 </script>

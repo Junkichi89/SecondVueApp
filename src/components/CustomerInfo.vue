@@ -1,3 +1,4 @@
+/* eslint-disable */
 <template>
   <div class="hello">
     <div class="box">
@@ -9,54 +10,54 @@
         <p>-性別-</p>
         <p class="gender">
           <label>
-            <input type="radio" name="gender" v-bind:value="男性" />男性
+            <input type="radio" name="gender" value="男性" v-model="user.gender" @change="setUser" />男性
           </label>
           <label>
-            <input type="radio" name="gender" v-bind:value="女性" />女性
+            <input type="radio" name="gender" value="女性" @change="setUser" v-model="user.gender" />女性
           </label>
           <br />
         </p>
         <p class="birthdate">-生年月日-</p>
-        <form>
+        <form @change="setUser">
           <!-- 生年月日のselectBox -->
-          <select class="year" v-model="year" @change="getDays">
+          <select class="year" v-model="user.year" @change="getDays">
             <option v-for="number in 34" v-bind:value="number + 1966" v-bind:key="number + 1966">
               {{ number + 1966 }}年
-              <span v-if="number < 23">（{{ seirekiS }}{{ number + 41 }})</span>
-              <span v-else>（{{ seirekiH }}{{ number - 22 }})</span>
+              <span v-if="number < 23">（{{ user.seirekiS }}{{ number + 41 }})</span>
+              <span v-else>（{{ user.seirekiH }}{{ number - 22 }})</span>
             </option>
           </select>年
-          <select class="month" v-model="month" @change="getDays">
+          <select class="month" v-model="user.month" @change="getDays">
             <option v-for="number in 12" v-bind:value="number" v-bind:key="number">{{ number }}</option>
           </select>月
-          <select class="day" v-model="day">
-            <option v-for="number in daysMax" v-bind:value="number" v-bind:key="number">{{ number }}</option>
+          <select class="day" v-model="user.day">
+            <option
+              v-for="number in this.user.daysMax"
+              v-bind:value="number"
+              v-bind:key="number"
+            >{{ number }}</option>
           </select>日
         </form>
       </div>
     </div>
     <!-- <router-link to="/"><button>前に戻る ></button></router-link> -->
-    <router-link to="about">
-      <button>次へ進む ></button>
-    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: "CustomerInfo",
-  props: {
-    msg: String
-  },
   data() {
     return {
-      gender: "",
-      year: 1990,
-      month: 1,
-      day: 1,
-      daysMax: "",
-      seirekiS: "昭和",
-      seirekiH: "平成"
+      user: {
+        gender: "",
+        year: 1990,
+        month: 1,
+        day: 1,
+        daysMax: "",
+        seirekiS: "昭和",
+        seirekiH: "平成"
+      }
     };
   },
   created: function() {
@@ -65,7 +66,14 @@ export default {
   methods: {
     //日の最大数を取得
     getDays: function() {
-      this.daysMax = new Date(this.year, this.month, 0).getDate();
+      this.user.daysMax = new Date(
+        this.user.year,
+        this.user.month,
+        0
+      ).getDate();
+    },
+    setUser: function() {
+      return this.$store.commit("setUser", this.user);
     }
   }
 };

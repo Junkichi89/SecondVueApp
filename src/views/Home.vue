@@ -1,6 +1,9 @@
 <template>
   <div class="home">
     <CustomerInfo />
+    <router-link to="about">
+      <button>次へ進む ></button>
+    </router-link>
   </div>
 </template>
 
