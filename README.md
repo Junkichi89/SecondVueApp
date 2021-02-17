@@ -1,5 +1,5 @@
 # Form　アプリの課題
--項目を入力し、次へでページ遷移
+- 項目を入力し、次へでページ遷移
 ## Project setup
 ```
 yarn install
